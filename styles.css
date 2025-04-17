@@ -1,18 +1,182 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; background: #f9f9f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-.card { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); text-align: center; width: 360px; }
-h1 { font-size: 1.75rem; margin-bottom: 1rem; color: #222; }
-.numbers { display: flex; justify-content: center; align-items: center; margin: 1rem 0; gap: 1rem; }
-.white-numbers, .mega-number { display: flex; gap: 0.5rem; }
-.white-numbers .ball, .mega-number .ball { width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; font-weight: bold; }
-.white-numbers .ball { background: #e0e0e0; color: #333; }
-.mega-number .ball { background: #ff5722; color: #fff; }
-.frequency-section { margin: 1.5rem 0; }
-.freq-block { margin-bottom: 1rem; }
-.freq-block h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #555; }
-.freq-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
-.freq-item { background: #e0e0e0; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 1.2rem; color: #333; min-width: 48px; text-align: center; }
-.freq-item.mega { background: #ffb74d; color: #000; }
-.actions { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; }
-button, a.button { flex: 1; text-decoration: none; background: #4a90e2; color: #fff; border: none; padding: 0.75rem; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background 0.3s; display: inline-flex; align-items: center; justify-content: center; }
-button:hover, a.button:hover { background: #357ab8; }
+/* === Reset & Basic Setup === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Using a modern system font stack */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: #f4f7f6; /* Slightly softer background */
+    color: #333; /* Default text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem; /* Add padding for small screens */
+}
+
+/* === Card Styling === */
+.card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px; /* Slightly larger radius */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    text-align: center;
+    /* Responsive width */
+    max-width: 420px; /* Max width */
+    width: 100%; /* Take available width up to max-width */
+    margin: 1rem; /* Ensure spacing from viewport edges */
+}
+
+h1 {
+    font-size: 2rem; /* Slightly larger */
+    margin-bottom: 1.5rem; /* More space below title */
+    color: #1a1a1a; /* Darker heading color */
+    font-weight: 600;
+}
+
+/* === Generated Numbers Display === */
+.numbers {
+    display: flex;
+    justify-content: center; /* Center the groups */
+    align-items: center;
+    margin: 2rem 0; /* More vertical spacing */
+    gap: 1.5rem; /* Increased gap between white/mega groups */
+    flex-wrap: wrap; /* Allow wrapping if needed on very small screens */
+}
+
+.white-numbers,
+.mega-number {
+    display: flex;
+    gap: 0.75rem; /* Slightly more space between balls */
+}
+
+.ball { /* Combined common styles for all balls */
+    width: 55px; /* Slightly larger balls */
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem; /* Larger number text */
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow on balls */
+    transition: transform 0.2s ease-in-out; /* Smooth transition for hover */
+}
+
+/* Style for White Balls */
+.white-numbers .ball {
+    background: #ffffff;
+    color: #333333;
+    border: 1px solid #dcdcdc; /* Clearer border */
+}
+
+/* Style for the Mega Ball */
+.mega-number .ball {
+    /* Official Mega Millions Gold/Yellow */
+    background: #fbc02d; /* Material Design Yellow 700 - good gold */
+    color: #212121; /* Dark text for better contrast on yellow */
+    border: 1px solid #f9a825; /* Slightly darker border */
+}
+
+/* Optional: Add a subtle hover effect to balls */
+.ball:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+
+/* === Frequency Section (If you have one) === */
+.frequency-section {
+    margin: 2rem 0;
+    border-top: 1px solid #eee; /* Separator line */
+    padding-top: 1.5rem;
+}
+
+.freq-block {
+    margin-bottom: 1.5rem;
+}
+
+.freq-block h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.freq-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.freq-item {
+    background: #f0f0f0; /* Lighter gray */
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 1rem; /* Slightly smaller than main balls */
+    color: #444;
+    min-width: 40px; /* Adjust as needed */
+    text-align: center;
+    font-weight: 500;
+}
+
+.freq-item.mega {
+    background: #fff9c4; /* Lighter yellow for frequency */
+    color: #5d4037; /* Brownish text for contrast */
+    border: 1px solid #fbc02d;
+}
+
+/* === Action Buttons === */
+.actions {
+    display: flex;
+    gap: 1rem; /* More space between buttons */
+    justify-content: center;
+    margin-top: 2rem; /* More space above buttons */
+}
+
+button,
+a.button {
+    flex: 1; /* Allow buttons to grow */
+    max-width: 180px; /* But prevent them from getting too wide */
+    text-decoration: none;
+    background: #007bff; /* Standard vibrant blue */
+    color: #ffffff;
+    border: none;
+    padding: 0.85rem 1rem; /* Slightly more padding */
+    border-radius: 8px; /* Match card radius style */
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth transitions */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2); /* Subtle shadow */
+}
+
+button:hover,
+a.button:hover {
+    background: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+button:active,
+a.button:active {
+    transform: translateY(0); /* Press down effect */
+    box-shadow: none;
+}
+
+/* Optional: Style for a secondary button if needed */
+.button.secondary {
+    background-color: #6c757d; /* Gray */
+    box-shadow: 0 2px 5px rgba(108, 117, 125, 0.2);
+}
+
+.button.secondary:hover {
+    background-color: #5a6268;
+}
