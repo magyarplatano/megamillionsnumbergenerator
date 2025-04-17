@@ -1,0 +1,18 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f9f9f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+.card { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); text-align: center; width: 360px; }
+h1 { font-size: 1.75rem; margin-bottom: 1rem; color: #222; }
+.numbers { display: flex; justify-content: center; align-items: center; margin: 1rem 0; gap: 1rem; }
+.white-numbers, .mega-number { display: flex; gap: 0.5rem; }
+.white-numbers .ball, .mega-number .ball { width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; font-weight: bold; }
+.white-numbers .ball { background: #e0e0e0; color: #333; }
+.mega-number .ball { background: #ff5722; color: #fff; }
+.frequency-section { margin: 1.5rem 0; }
+.freq-block { margin-bottom: 1rem; }
+.freq-block h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #555; }
+.freq-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+.freq-item { background: #e0e0e0; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 1.2rem; color: #333; min-width: 48px; text-align: center; }
+.freq-item.mega { background: #ffb74d; color: #000; }
+.actions { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; }
+button, a.button { flex: 1; text-decoration: none; background: #4a90e2; color: #fff; border: none; padding: 0.75rem; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background 0.3s; display: inline-flex; align-items: center; justify-content: center; }
+button:hover, a.button:hover { background: #357ab8; }
