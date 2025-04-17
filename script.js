@@ -1,4 +1,4 @@
-// script.js (Refactored and Improved)
+// script.js (Updated for <li> elements)
 
 // Utility Functions
 const safeParseLocalStorage = (key, defaultValue) => {
@@ -55,16 +55,16 @@ const pickNumbers = () => {
 // Rendering Functions
 const renderNumbers = ({ whites, mega }) => {
   whiteContainer.innerHTML = whites
-    .map((n) => `<div class="ball" aria-label="White ball ${n}">${n}</div>`)
+    .map((n) => `<li class="ball" aria-label="White ball ${n}">${n}</li>`)
     .join('');
-  megaContainer.innerHTML = `<div class="ball mega" aria-label="Mega ball ${mega}">${mega}</div>`;
+  megaContainer.innerHTML = `<li class="ball mega" aria-label="Mega ball ${mega}">${mega}</li>`;
 };
 
 const renderFrequencyLists = () => {
   const createFreqHTML = (item, isMega) =>
-    `<div class="freq-item ${isMega ? 'mega' : ''}" aria-label="${item.num} appeared ${item.count} times">
+    `<li class="freq-item ${isMega ? 'mega' : ''}" aria-label="${item.num} appeared ${item.count} times">
        ${item.num} – ${item.count}
-     </div>`;
+     </li>`;
 
   const topWhite = whiteFreq
     .map((count, idx) => ({ num: idx + 1, count }))
