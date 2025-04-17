@@ -1,13 +1,25 @@
-const generateBtn = document.getElementById('generateBtn');
+// script.js
+
+const generateBtn    = document.getElementById('generateBtn');
 const whiteContainer = document.querySelector('.white-numbers');
-const megaContainer = document.querySelector('.mega-number');
-const whiteFreqList = document.getElementById('whiteFreqList');
-const megaFreqList = document.getElementById('megaFreqList');
+const megaContainer  = document.querySelector('.mega-number');
+const whiteFreqList  = document.getElementById('whiteFreqList');
+const megaFreqList   = document.getElementById('megaFreqList');
 
-// Initialize frequency arrays from localStorage or zero arrays
-let whiteFreq = JSON.parse(localStorage.getItem('whiteFreq')) || Array(70).fill(0);
-let megaFreq = JSON.parse(localStorage.getItem('megaFreq')) || Array(25).fill(0);
+// ——— 1) Safely load or init frequency arrays ———
+let whiteFreq = Array(70).fill(0);
+let megaFreq  = Array(25).fill(0);
 
+try {
+  const w = localStorage.getItem('whiteFreq');
+  const m = localStorage.getItem('megaFreq');
+  if (w) whiteFreq = JSON.parse(w);
+  if (m) megaFreq  = JSON.parse(m);
+} catch (e) {
+  console.error('Failed to parse stored frequencies:', e);
+}
+
+// ——— 2) Pick & render numbers ———
 function pickNumbers() {
   const whites = [];
   while (whites.length < 5) {
@@ -20,45 +32,44 @@ function pickNumbers() {
 }
 
 function renderNumbers({ whites, mega }) {
-  whiteContainer.innerHTML = '';
-  megaContainer.innerHTML = '';
-  whites.forEach(n => {
-    const b = document.createElement('div');
-    b.className = 'ball'; b.textContent = n;
-    whiteContainer.appendChild(b);
-  });
-  const m = document.createElement('div');
-  m.className = 'ball'; m.textContent = mega;
-  megaContainer.appendChild(m);
+  whiteContainer.innerHTML = whites
+    .map(n => `<div class="ball">${n}</div>`).join('');
+  
+  megaContainer.innerHTML = `<div class="ball">${mega}</div>`;
 }
 
+// ——— 3) Update & persist frequencies ———
 function updateFrequencies({ whites, mega }) {
   whites.forEach(n => whiteFreq[n - 1]++);
   megaFreq[mega - 1]++;
   localStorage.setItem('whiteFreq', JSON.stringify(whiteFreq));
-  localStorage.setItem('megaFreq', JSON.stringify(megaFreq));
+  localStorage.setItem('megaFreq',  JSON.stringify(megaFreq));
 }
 
+// ——— 4) Render top lists with counts ———
 function renderFrequencyLists() {
   // Top 5 white balls
   const topWhite = whiteFreq
     .map((count, idx) => ({ num: idx + 1, count }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 5);
+
   whiteFreqList.innerHTML = topWhite
-    .map(item => `<div class="freq-item">${item.num}</div>`)
+    .map(item => `<div class="freq-item">${item.num} – ${item.count}</div>`)
     .join('');
-  
+
   // Top 3 mega balls
   const topMega = megaFreq
     .map((count, idx) => ({ num: idx + 1, count }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 3);
+
   megaFreqList.innerHTML = topMega
-    .map(item => `<div class="freq-item mega">${item.num}</div>`)
+    .map(item => `<div class="freq-item mega">${item.num} – ${item.count}</div>`)
     .join('');
 }
 
+// ——— Wiring up ———
 generateBtn.addEventListener('click', () => {
   const nums = pickNumbers();
   renderNumbers(nums);
@@ -66,8 +77,13 @@ generateBtn.addEventListener('click', () => {
   renderFrequencyLists();
 });
 
-// Initial render
-const initialNums = pickNumbers();
-renderNumbers(initialNums);
-updateFrequencies(initialNums);
-renderFrequencyLists();
+// ——— 5) Initial page load ———
+document.addEventListener('DOMContentLoaded', () => {
+  // show a first draw (optional)
+  const initial = pickNumbers();
+  renderNumbers(initial);
+  updateFrequencies(initial);
+
+  // then render the frequency lists
+  renderFrequencyLists();
+});
