@@ -3,53 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Generate sleek Mega Millions lottery numbers." />
-  <title>Mega Millions Quick Pick</title>
-  
+  <meta name="description" content="Generate sleek Mega Millions lottery numbers with history and frequency insights." />
+  <title>Mega Millions Quick Pick Generator</title>
+
   <!-- Preload critical CSS -->
   <link rel="preload" href="styles.css" as="style">
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicon.ico" /> <!-- Make sure favicon.ico exists -->
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Mega Millions Quick Pick" />
-  <meta property="og:description" content="Try your luck at generating Mega Millions lottery numbers!" />
-  <meta property="og:image" content="path/to/preview-image.jpg" />
-  <meta property="og:url" content="https://yourwebsite.com" />
+  <meta property="og:title" content="Mega Millions Quick Pick Generator" />
+  <meta property="og:description" content="Generate Mega Millions lottery numbers, view history, and see frequent picks!" />
+  <!-- === UPDATE THESE === -->
+  <meta property="og:image" content="https://magyarplatano.github.io/megamillionsnumbergenerator/preview-image.jpg" /> <!-- Example: Replace with your actual image URL -->
+  <meta property="og:url" content="https://magyarplatano.github.io/megamillionsnumbergenerator/" /> <!-- Example: Replace with your actual live URL -->
+  <meta property="og:type" content="website" />
+  <!-- === === === === === -->
 
-  <!-- Prevent rendering issues -->
+  <!-- Prevent rendering issues (Optional but often helpful) -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 </head>
 <body>
-  <main class="card" role="main">
+  <!-- Removed redundant role="main" -->
+  <main class="card">
     <h1>Mega Millions Quick Pick</h1>
 
-    <section class="numbers" aria-labelledby="numbers-heading">
-      <h2 id="numbers-heading">Your Numbers</h2>
+    <!-- Removed internal h2 and aria-labelledby, added aria-label -->
+    <section class="numbers" aria-label="Generated Numbers">
+      <!-- Numbers will be generated here by script.js -->
       <div class="white-numbers" aria-label="White Balls"></div>
       <div class="mega-number" aria-label="Mega Ball"></div>
     </section>
 
-    <section class="frequency-section">
-      <div class="freq-block">
-        <h2>Top White Balls</h2>
-        <div id="whiteFreqList" class="freq-list"></div>
-      </div>
-      <div class="freq-block">
-        <h2>Top Mega Balls</h2>
-        <div id="megaFreqList" class="freq-list"></div>
-      </div>
+    <!-- Frequency section (optional, based on your script.js features) -->
+    <section class="frequency-section" aria-labelledby="frequency-heading">
+        <h2 id="frequency-heading" class="visually-hidden">Number Frequency</h2> <!-- Added a visually hidden heading for better structure -->
+        <div class="freq-block">
+            <!-- Changed h2 to h3 for better hierarchy -->
+            <h3>Top White Balls</h3>
+            <div id="whiteFreqList" class="freq-list">
+                <!-- Frequency items will be generated here -->
+            </div>
+        </div>
+        <div class="freq-block">
+            <!-- Changed h2 to h3 for better hierarchy -->
+            <h3>Top Mega Balls</h3>
+            <div id="megaFreqList" class="freq-list">
+                <!-- Frequency items will be generated here -->
+            </div>
+        </div>
     </section>
 
-    <section class="actions">
-      <button id="generateBtn" aria-label="Generate Lottery Numbers">Generate Numbers</button>
-      <a id="playBtn" class="button" href="https://lnk.to/TLHP?tl_affid=17717" target="_blank" rel="noopener noreferrer" aria-label="Play Mega Millions Now">Play Now</a>
+    <section class="actions" aria-label="Actions">
+      <button id="generateBtn" aria-label="Generate New Lottery Numbers">Generate Numbers</button>
+      <!-- Ensure the affiliate link is correct -->
+      <a id="playBtn" class="button" href="https://lnk.to/TLHP?tl_affid=17717" target="_blank" rel="noopener noreferrer" aria-label="Play Mega Millions Online">Play Now</a>
     </section>
   </main>
 
-  <!-- JavaScript -->
+  <!-- Add a visually-hidden class to your CSS for accessibility -->
+  <style>
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+
+  <!-- JavaScript (defer ensures it runs after HTML parsing) -->
   <script src="script.js" defer></script>
 </body>
 </html>
