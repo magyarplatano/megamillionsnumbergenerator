@@ -18,83 +18,241 @@
     border: 0;
 }
 
+/* === Body Styling (Dark Futuristic Background) === */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    /* Dark gradient background */
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    color: #e0e0e0; /* Light text for dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* === Card Styling (Glassmorphism/Futuristic Panel) === */
+.card {
+    /* Semi-transparent background with blur */
+    background: rgba(25, 25, 55, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle light border */
+    padding: 2.5rem; /* Slightly more padding */
+    border-radius: 20px; /* More rounded corners */
+    /* Neon glow effect */
+    box-shadow: 0 8px 32px rgba(0, 200, 255, 0.2), 0 0 15px rgba(100, 100, 220, 0.15);
+    text-align: center;
+    max-width: 450px; /* Slightly wider */
+    width: 100%;
+    margin: 1rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+/* === Heading === */
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: #ffffff; /* Bright white heading */
+    font-weight: 700;
+    /* Subtle text glow */
+    text-shadow: 0 0 10px rgba(0, 220, 255, 0.3);
+}
+
 /* === Generated Numbers Display === */
 .numbers {
     display: flex;
-    justify-content: center; /* Center the groups */
+    justify-content: center;
     align-items: center;
-    margin: 2rem 0; /* More vertical spacing */
-    gap: 1.5rem; /* Increased gap between white/mega groups */
-    flex-wrap: wrap; /* Allow wrapping if needed on very small screens */
+    margin: 2.5rem 0; /* More vertical space */
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .white-numbers,
 .mega-number {
     display: flex;
-    gap: 0.75rem; /* Slightly more space between balls */
-    list-style: none; /* Remove list styling for <ul> */
-    padding: 0; /* Remove default padding for <ul> */
-    margin: 0; /* Remove default margin for <ul> */
+    gap: 0.8rem; /* Slightly more space between balls */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.ball { /* Combined common styles for all balls */
-    width: 55px; /* Slightly larger balls */
-    height: 55px;
+/* === Ball Styling (General) === */
+.ball {
+    width: 60px; /* Larger balls */
+    height: 60px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.4rem; /* Larger number text */
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow on balls */
-    transition: transform 0.2s ease-in-out; /* Smooth transition for hover */
+    font-size: 1.6rem; /* Larger number */
+    font-weight: 700; /* Bolder font */
+    /* Inner shadow for depth + subtle outer shadow */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+    border: none; /* Remove default border, rely on background/shadow */
+    position: relative; /* For potential pseudo-element effects later */
 }
 
-/* Style for White Balls */
+/* === White Ball Styling === */
 .white-numbers .ball {
-    background: #ffffff;
-    color: #333333;
-    border: 1px solid #dcdcdc; /* Clearer border */
+    background: #e8f0f2; /* Light cool gray */
+    color: #1c2b3a; /* Dark blue-gray text */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle highlight border */
 }
 
-/* Style for the Mega Ball */
+/* === Mega Ball Styling (Gold Gradient) === */
 .mega-number .ball {
-    /* Official Mega Millions Gold/Yellow */
-    background: #fbc02d; /* Material Design Yellow 700 - good gold */
-    color: #212121; /* Dark text for better contrast on yellow */
-    border: 1px solid #f9a825; /* Slightly darker border */
+    background: linear-gradient(145deg, #ffeb3b, #fbc02d); /* Vibrant gold gradient */
+    color: #212121; /* Dark text for contrast */
+     /* Gold glow */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.15), 0 0 12px rgba(255, 193, 7, 0.5);
 }
 
-/* Optional: Add a subtle hover effect to balls */
+/* === Ball Hover Effect === */
 .ball:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 6px 12px rgba(0,0,0,0.3); /* Enhance shadows */
 }
+
+.white-numbers .ball:hover {
+     /* Add a subtle cyan glow on hover */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 6px 12px rgba(0,0,0,0.3), 0 0 15px rgba(0, 220, 255, 0.4);
+}
+.mega-number .ball:hover {
+     /* Intensify gold glow on hover */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 6px 12px rgba(0,0,0,0.2), 0 0 20px rgba(255, 193, 7, 0.7);
+}
+
 
 /* === Frequency Section === */
+.frequency-section {
+    margin: 2.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Clearer separator */
+    padding-top: 2rem;
+}
+
+.freq-block {
+    margin-bottom: 1.5rem;
+}
+
+.freq-block h3 {
+    font-size: 1.3rem; /* Slightly larger */
+    margin-bottom: 1rem;
+    color: #c0d0ff; /* Light blue/lavender */
+    font-weight: 500;
+    text-transform: uppercase; /* Stylized */
+    letter-spacing: 0.5px;
+}
+
 .freq-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
-    list-style: none; /* Remove list styling for <ul> */
-    padding: 0; /* Remove padding for <ul> */
-    margin: 0; /* Remove margin for <ul> */
+    gap: 0.6rem; /* More spacing */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
+/* === Frequency Item Styling === */
 .freq-item {
-    background: #f0f0f0; /* Lighter gray */
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    font-size: 1rem; /* Slightly smaller than main balls */
-    color: #444;
-    min-width: 40px; /* Adjust as needed */
+    /* Darker, semi-transparent background */
+    background: rgba(50, 50, 80, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.6rem 0.9rem; /* Adjust padding */
+    border-radius: 8px; /* Slightly rounded */
+    font-size: 1rem;
+    color: #d0d8e0; /* Light gray text */
+    min-width: 45px;
     text-align: center;
     font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0, 0.2);
 }
 
 .freq-item.mega {
-    background: #fff9c4; /* Lighter yellow for frequency */
-    color: #5d4037; /* Brownish text for contrast */
-    border: 1px solid #fbc02d;
+    /* Use a faint gold tint */
+    background: rgba(251, 192, 45, 0.2);
+    border: 1px solid rgba(251, 192, 45, 0.4);
+    color: #f5f5f5; /* Brighter text for contrast */
+    box-shadow: 0 2px 4px rgba(0,0,0, 0.2), 0 0 5px rgba(251, 192, 45, 0.2); /* Subtle glow */
+}
+
+.freq-item:hover {
+    background: rgba(80, 80, 120, 0.85); /* Lighten on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0, 0.3);
+}
+
+.freq-item.mega:hover {
+    background: rgba(251, 192, 45, 0.4); /* Brighter yellow on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0, 0.3), 0 0 10px rgba(251, 192, 45, 0.4);
+}
+
+/* === Action Buttons === */
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2.5rem; /* More space above buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+}
+
+button,
+a.button {
+    flex-grow: 1;
+    flex-basis: 150px; /* Minimum base width before growing */
+    max-width: 200px;
+    text-decoration: none;
+    /* Futuristic cyan gradient button */
+    background: linear-gradient(45deg, #00bcd4, #0097a7);
+    color: #ffffff;
+    border: none;
+    padding: 1rem 1.2rem; /* Generous padding */
+    border-radius: 10px; /* Match card style */
+    font-size: 1rem;
+    font-weight: 600; /* Bold text */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    /* Button glow */
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Increase letter spacing */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+button:hover,
+a.button:hover {
+    /* Brighter gradient on hover */
+    background: linear-gradient(45deg, #00e5ff, #00bcd4);
+    /* Intensify glow and lift */
+    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+    transform: translateY(-3px);
+}
+
+button:active,
+a.button:active {
+    transform: translateY(0); /* Press down effect */
+    box-shadow: 0 2px 10px rgba(0, 188, 212, 0.4); /* Reduced shadow */
+}
+
+/* Differentiate the 'Play Now' button */
+#playBtn {
+    background: linear-gradient(45deg, #ffeb3b, #fbc02d); /* Gold gradient */
+    color: #333; /* Dark text on gold */
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4); /* Gold glow */
+}
+
+#playBtn:hover {
+    background: linear-gradient(45deg, #fff176, #ffeb3b); /* Brighter gold */
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6); /* Intense gold glow */
+}
+
+#playBtn:active {
+    box-shadow: 0 2px 10px rgba(255, 193, 7, 0.4);
 }
