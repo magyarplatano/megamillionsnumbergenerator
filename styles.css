@@ -1,0 +1,13 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; }
+.card { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); text-align: center; width: 320px; }
+h1 { font-size: 1.5rem; margin-bottom: 1rem; color: #333; }
+.numbers { display: flex; justify-content: center; align-items: center; margin: 1rem 0; }
+.white-numbers, .mega-number { display: flex; gap: 0.5rem; }
+.white-numbers .ball, .mega-number .ball { width: 48px; height: 48px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; font-weight: bold; }
+.white-numbers .ball { background: #e0e0e0; color: #333; }
+.mega-number .ball { background: #ff5722; color: #fff; }
+.actions { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; }
+button, a.button, .actions button, .actions a { flex: 1; text-decoration: none; background: #4a90e2; color: #fff; border: none; padding: 0.75rem; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background 0.3s; }
+.actions a { display: inline-flex; justify-content: center; align-items: center; }
+button:hover, .actions a:hover { background: #357ab8; }
