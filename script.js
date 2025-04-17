@@ -118,6 +118,26 @@ document.addEventListener('DOMContentLoaded', () => {
 function debounce(func, wait) {
   let timeout;
   return function (...args) {
+
+    const resetBtn = document.getElementById('resetBtn');
+
+resetBtn.addEventListener('click', () => {
+  if (!confirm('Reset frequency data? This will clear all stats.')) return;
+
+  // Reset localStorage
+  localStorage.removeItem('whiteFreq');
+  localStorage.removeItem('megaFreq');
+
+  // Reset arrays in memory
+  whiteFreq = Array(70).fill(0);
+  megaFreq  = Array(25).fill(0);
+
+  // Clear the display
+  renderFrequencyLists();
+
+  alert('Frequencies have been reset.');
+});
+
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
